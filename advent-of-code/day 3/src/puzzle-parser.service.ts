@@ -28,7 +28,6 @@ export class PuzzleParserService {
 
     findNumbersToSum(input: string[][]): number[] {
         let startingXOfNumber = -1;
-        let startingYOfNumber = -1;
 
         let currentNumber = '';
 
@@ -41,34 +40,33 @@ export class PuzzleParserService {
                 if (isNumber) {
                     if (currentNumber === '') {
                         startingXOfNumber = x;
-                        startingYOfNumber = y;
                     }
 
                     currentNumber += charAtXy;
+
+                    if (x === input[y].length - 1) {
+                        const anySymbolAround = this.anySymbolAroundNumber(input, y, startingXOfNumber, x, foundNumbers, currentNumber);
+                        if (anySymbolAround) {
+                            foundNumbers.push(+currentNumber);
+                        }
+                        currentNumber = '';
+                        startingXOfNumber = -1;
+                    }
+
                 } else {
                     if (currentNumber !== '') {
                         if (charAtXy !== '.') {
                             foundNumbers.push(+currentNumber);
                             currentNumber = '';
                             startingXOfNumber = -1;
-                            startingYOfNumber = -1;
                         } else {
-                            const charAtBeginning = input[startingYOfNumber][startingXOfNumber - 1];
-                            if (charAtBeginning === undefined || charAtBeginning === '.') {
-                                const anySymbolAbove = this.anySymbolInRange(input, startingYOfNumber - 1, startingXOfNumber - 1, x);
-                                const anySymbolBelow = this.anySymbolInRange(input, startingYOfNumber + 1, startingXOfNumber - 1, x);
+                            const anySymbolAround = this.anySymbolAroundNumber(input, y, startingXOfNumber, x, foundNumbers, currentNumber);
 
-                                if (anySymbolAbove || anySymbolBelow) {
-                                    foundNumbers.push(+currentNumber);
-                                }
-                            } else {
+                            if (anySymbolAround) {
                                 foundNumbers.push(+currentNumber);
                             }
-
-
                             currentNumber = '';
                             startingXOfNumber = -1;
-                            startingYOfNumber = -1;
                         }
                     }
                 }
@@ -76,6 +74,18 @@ export class PuzzleParserService {
         }
 
         return foundNumbers;
+    }
+
+    private anySymbolAroundNumber(input: string[][], y: number, startingXOfNumber: number, x: number, foundNumbers: number[], currentNumber: string): boolean {
+        const charAtBeginning = input[y][startingXOfNumber - 1];
+        if (charAtBeginning === undefined || charAtBeginning === '.') {
+            const anySymbolAbove = this.anySymbolInRange(input, y - 1, startingXOfNumber - 1, x);
+            const anySymbolBelow = this.anySymbolInRange(input, y + 1, startingXOfNumber - 1, x);
+
+            return anySymbolAbove || anySymbolBelow;
+        } else {
+            return true;
+        }
     }
 
     sumNumbersFoundPreviously(numbers: number[]): number {
