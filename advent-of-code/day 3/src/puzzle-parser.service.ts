@@ -27,7 +27,8 @@ export class PuzzleParserService {
     }
 
     findNumbersToSum(input: string[][]): number[] {
-        let startingIndexOfNumber = -1;
+        let startingXOfNumber = -1;
+        let startingYOfNumber = -1;
 
         let currentNumber = '';
 
@@ -39,7 +40,8 @@ export class PuzzleParserService {
                 const isNumber = !isNaN(+charAtXy);
                 if (isNumber) {
                     if (currentNumber === '') {
-                        startingIndexOfNumber = x;
+                        startingXOfNumber = x;
+                        startingYOfNumber = y;
                     }
 
                     currentNumber += charAtXy;
@@ -48,12 +50,13 @@ export class PuzzleParserService {
                         if (charAtXy !== '.') {
                             foundNumbers.push(+currentNumber);
                             currentNumber = '';
-                            startingIndexOfNumber = -1;
+                            startingXOfNumber = -1;
+                            startingYOfNumber = -1;
                         } else {
-                            const charAtBeginning = input[y][startingIndexOfNumber - 1];
+                            const charAtBeginning = input[startingYOfNumber][startingXOfNumber - 1];
                             if (charAtBeginning === undefined || charAtBeginning === '.') {
-                                const anySymbolAbove = this.anySymbolInRange(input, y - 1, startingIndexOfNumber - 1, x);
-                                const anySymbolBelow = this.anySymbolInRange(input, y + 1, startingIndexOfNumber - 1, x);
+                                const anySymbolAbove = this.anySymbolInRange(input, startingYOfNumber - 1, startingXOfNumber - 1, x);
+                                const anySymbolBelow = this.anySymbolInRange(input, startingYOfNumber + 1, startingXOfNumber - 1, x);
 
                                 if (anySymbolAbove || anySymbolBelow) {
                                     foundNumbers.push(+currentNumber);
@@ -61,8 +64,11 @@ export class PuzzleParserService {
                             } else {
                                 foundNumbers.push(+currentNumber);
                             }
+
+
                             currentNumber = '';
-                            startingIndexOfNumber = -1;
+                            startingXOfNumber = -1;
+                            startingYOfNumber = -1;
                         }
                     }
                 }

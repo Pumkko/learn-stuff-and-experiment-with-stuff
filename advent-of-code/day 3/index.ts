@@ -11,6 +11,8 @@ const puzzleInput = await puzzleInputFile.text();
 const puzzleParserService = new PuzzleParserService();
 
 const arrayOfChar = puzzleParserService.createArrayOfCharFromInput(puzzleInput);
+
 const numbers = puzzleParserService.findNumbersToSum(arrayOfChar);
+
 const sum = puzzleParserService.sumNumbersFoundPreviously(numbers);
 console.log(sum);
