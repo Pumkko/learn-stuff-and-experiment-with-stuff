@@ -32,6 +32,9 @@ dependencies:
   '@tanstack/angular-query-experimental':
     specifier: ^5.14.0
     version: 5.14.0(@angular/common@17.0.7)(@angular/core@17.0.7)(@use-gesture/vanilla@10.3.0)(rxjs@7.8.1)
+  ag-grid-angular:
+    specifier: ^31.0.1
+    version: 31.0.1(@angular/common@17.0.7)(@angular/core@17.0.7)
   flowbite:
     specifier: ^2.2.1
     version: 2.2.1
@@ -2838,6 +2841,22 @@ packages:
       loader-utils: 2.0.4
       regex-parser: 2.2.11
     dev: true
+
+  /ag-grid-angular@31.0.1(@angular/common@17.0.7)(@angular/core@17.0.7):
+    resolution: {integrity: sha512-NePQ3cX2lQm93SssAsu0Koy4+cC4yuRtEFz6so3g9Xdp1QV5V5nL1Z6BRjksyVlLdq0HWbaRknm36VGwzXuTPg==}
+    peerDependencies:
+      '@angular/common': '>= 14.0.0'
+      '@angular/core': '>= 14.0.0'
+    dependencies:
+      '@angular/common': 17.0.7(@angular/core@17.0.7)(rxjs@7.8.1)
+      '@angular/core': 17.0.7(rxjs@7.8.1)(zone.js@0.14.2)
+      ag-grid-community: 31.0.1
+      tslib: 2.6.2
+    dev: false
+
+  /ag-grid-community@31.0.1:
+    resolution: {integrity: sha512-RZQlW1DTOJHsUR/tnbnTJQKgAnDlHi05YYyTe5AgNor/1TlX1hoYdcqrGsJjvcHQgTjeEgzWOL0yf+KcqXZzxg==}
+    dev: false
 
   /agent-base@7.1.0:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}

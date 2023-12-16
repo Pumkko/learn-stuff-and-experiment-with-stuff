@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RickAndMortyService } from '../../rick-and-morty.service';
+import { AgGridModule } from 'ag-grid-angular';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
   standalone: true,
-  imports: [],
+  imports: [AgGridModule],
   templateUrl: './rick-and-morty-characters-grid.component.html',
   providers: [RickAndMortyService],
   changeDetection: ChangeDetectionStrategy.OnPush
