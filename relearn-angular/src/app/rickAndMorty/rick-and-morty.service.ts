@@ -1,17 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
+import { ZodError } from 'zod';
+import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
 
-
-
-type Response = {
-  name: string
-  description: string
-  subscribers_count: number
-  stargazers_count: number
-  forks_count: number
-}
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +13,31 @@ export class RickAndMortyService {
   http = inject(HttpClient)
 
   query = injectQuery(() => ({
-    queryKey: ['repoData'],
-    queryFn: () =>
-      lastValueFrom(
-        this.http.get<Response>('https://api.github.com/repos/tanstack/query'),
-      ),
+    queryKey: ['rickAndMortyCharacter'],
+    queryFn: () => this.fetchCharacters(),
+    retry(failureCount, error) {
+      console.error(error);
+      if (error instanceof ZodError) {
+        return false;
+      }
+
+      return failureCount < 2;
+    },
+
   }))
+
+  private fetchCharacters() {
+    return lastValueFrom(
+      this.http.get<unknown>('https://rickandmortyapi.com/api/character')
+        .pipe(map(result => {
+          const parsed = RickAndMortyCharacterResponseSchema.safeParse(result);
+          if (!parsed.success) {
+            throw parsed.error;
+          }
+
+          return parsed.data;
+        }))
+    )
+  }
 
 }

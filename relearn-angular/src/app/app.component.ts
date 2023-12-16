@@ -11,11 +11,10 @@ import { RickAndMortyService } from './rickAndMorty/rick-and-morty.service';
 })
 export class AppComponent {
   title = 'relearn-angular';
-
-
+  
   private readonly _rickAndMortyService = inject(RickAndMortyService);
 
-  get query() {
+  get rickAndMortyCharactersQuery() {
     return this._rickAndMortyService.query;
   }
 
