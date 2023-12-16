@@ -1,0 +1,17 @@
+<p>rick-and-morty-characters-grid works!</p>
+@if (rickAndMortyCharactersQuery.isPending()) {
+    Loading...
+  }
+  @if (rickAndMortyCharactersQuery.error()) {
+    An error has occurred while fetching Rick And Morty Characters
+  }
+  @if (rickAndMortyCharactersQuery.data(); as characters) {
+  
+    @for (character of characters.results; track character.id) {
+      <h1>{{ character.name }}</h1>
+      <p>{{ character.origin.name }}</p>
+      <strong>👀 {{ character.status }}</strong>
+      <strong>✨ {{ character.url }}</strong>
+    }
+  }
+  

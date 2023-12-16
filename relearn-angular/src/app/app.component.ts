@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RickAndMortyService } from './rickAndMorty/rick-and-morty.service';
@@ -8,14 +8,11 @@ import { RickAndMortyService } from './rickAndMorty/rick-and-morty.service';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'relearn-angular';
   
-  private readonly _rickAndMortyService = inject(RickAndMortyService);
 
-  get rickAndMortyCharactersQuery() {
-    return this._rickAndMortyService.query;
-  }
 
 }
