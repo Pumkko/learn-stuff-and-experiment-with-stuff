@@ -15,5 +15,9 @@ export const RickAndMortyCharacterResponseSchema = z.object({
     )
 });
 
+// Weird typescript does not have it
+type ArraySubType<T> = T extends (infer S)[] ? S : never
+
 export type RickAndMortyCharacterResponse = z.infer<typeof RickAndMortyCharacterResponseSchema>
+export type RickAndMortyCharacter = ArraySubType<RickAndMortyCharacterResponse["results"]>;
 

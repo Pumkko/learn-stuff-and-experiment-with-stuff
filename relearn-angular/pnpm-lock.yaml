@@ -35,6 +35,9 @@ dependencies:
   ag-grid-angular:
     specifier: ^31.0.1
     version: 31.0.1(@angular/common@17.0.7)(@angular/core@17.0.7)
+  ag-grid-community:
+    specifier: ^31.0.1
+    version: 31.0.1
   flowbite:
     specifier: ^2.2.1
     version: 2.2.1
