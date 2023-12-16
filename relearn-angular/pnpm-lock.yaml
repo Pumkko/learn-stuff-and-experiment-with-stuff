@@ -32,6 +32,9 @@ dependencies:
   '@tanstack/angular-query-experimental':
     specifier: ^5.14.0
     version: 5.14.0(@angular/common@17.0.7)(@angular/core@17.0.7)(@use-gesture/vanilla@10.3.0)(rxjs@7.8.1)
+  flowbite:
+    specifier: ^2.2.1
+    version: 2.2.1
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
@@ -2399,6 +2402,10 @@ packages:
     dev: true
     optional: true
 
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
   /@schematics/angular@17.0.7:
     resolution: {integrity: sha512-d7QKmcKrM4owb/2bR7Ipf23roiNbvbD/x7reNhQAtKAPLSHJ3Ulkf1+Yv+dj+9f+K7y9SBviEUSrD27BQ9WaxQ==}
     engines: {node: ^18.13.0 || >=20.9.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
@@ -4405,6 +4412,13 @@ packages:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
+  /flowbite@2.2.1:
+    resolution: {integrity: sha512-iiZyBTtriEDRHrqXZgpKHaxl4B2J8HZUP8Yn1RXozUDKszWHDVj4GxQqMMB9AJHRWOgXV/4E/LJZ/zqQgBUhWA==}
+    dependencies:
+      '@popperjs/core': 2.11.8
+      mini-svg-data-uri: 1.4.4
+    dev: false
+
   /follow-redirects@1.15.3(debug@4.3.2):
     resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
     engines: {node: '>=4.0'}
@@ -5608,6 +5622,11 @@ packages:
       schema-utils: 4.2.0
       webpack: 5.89.0(esbuild@0.19.5)
     dev: true
+
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: false
 
   /minimalistic-assert@1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
